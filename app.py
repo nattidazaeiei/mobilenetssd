@@ -158,14 +158,14 @@ def event_handle(event):
             filename = event['message']['id'] + '.jpg'
             i.save(UPLOAD_FOLDER + filename)
             process_file(os.path.join(UPLOAD_FOLDER, filename), filename)
-
-            url = request.url_root + DOWNLOAD_FOLDER + filename
+    elif msg == "covid" :
+            url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
             
             line_bot_api.reply_message(
                 rtoken, [
                     TextSendMessage(text='Object detection result:'),
                     ImageSendMessage(url,url)
-                ])    
+                headers = request.headers    
     
         except:
             message = TextSendMessage(text="เกิดข้อผิดพลาด กรุณาส่งใหม่อีกครั้ง")
